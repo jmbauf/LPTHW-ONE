@@ -1,0 +1,12 @@
+*Beach Strip
+    - next_scene
+    - opening_scene
+*Engine
+    - play
+*Scene
+  -enter
+  *Death
+  *Central Club
+  *VIP
+  *Miami Scene
+  *Escape Car

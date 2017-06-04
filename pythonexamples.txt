@@ -1,0 +1,18 @@
+comments are normally in # form
+print: displays chosen data, etc.
+printing without spaces: hey %s there
+double quotes create strings
+strings are how you give things to humans from a program
+you embed variables inside a string
+the syntax at the end tells python to put everything in the strings
+when you have the double or single quotes, you are creating a string
+if you need multiple formats to print, throw the ()
+%r is best for debugging, %s and %d are better for displaying variables
+three double quotes will let you type as many lines as you want
+the backslash encodes difficult to type characters into a string
+raw_input() presents a prompt to the user
+pydoc shows you documentation of the module it's able to find
+import adds features to your script from the Python feature set
+argv is the argument variable that holds the arguments you pass to your script
+functions name pieces of code, take arguments, and help you make mini scripts
+variables in functions are not connected to variables in script
