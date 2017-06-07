@@ -12,10 +12,19 @@ class Scene(object):
 class Engine(object):
 
     def __init__(self, scene_map):
-        pass
+        self.scene_map = scene_map
 
     def play(self):
-        pass
+        current_scene = self.scene_map.opening_scene()
+        last_scene = self.scene_map.next_scene('finished')
+
+        while current_scene != last_scene:
+            next_scne_name = current_scene.enter()
+            current_scene = self.scene_map.next_scene(Scene)
+
+
+            # be sure to print out the last scene pls
+            current_scene.enter(next_scene_name)
 
 class Death(Scene):
 
@@ -34,6 +43,9 @@ class Death(Scene):
 class CentralClub(Scene):
 
     def enter(self):
+        print "So, you decided to go to a birthday party"
+        print "You, the antisocial one.  AND YOU ARE IN MIAMI"
+        print "\n"
         print "As if this club full of walking memes"
         print "isn't enough, the birthday boy just got"
         print "lost and that would be fine IF YOU WERENT"
@@ -47,22 +59,21 @@ class CentralClub(Scene):
         print "gets, and knowing that he would gamble on snail races,"
         print "he is most likely at Miami Subs, betting on the fights"
         print "outside while eating."
+        print "\n"
         print "But since he leaves a wave of destruction in every place that"
         print "he goes, you need to check all of the clubs to be sure that he"
         print "didn't cause too much damage or sleep with a diplomat's wife"
         print "again, which is a story for another time, but not now."
         print "Now where could Captain Wingus be?????"
         print "Before you can even go look, some bad duudes want to fight you."
-        print "This is most likely because earlier in the night, your friend"
-        print "drank four shots of whiskey, bumped into the bouncer, called him"
-        print "a pleb, and B----ta B--bed the man through a glass table. Yeah,"
-        print "you're about to catch hands."
+        print "This is most likely because earlier in the night.."
+        print "You can either try to punch this person or dodge skilfully!"
 
 
         action = raw_input("> ")
 
 
-        if action == "punch!":
+        if action == "punch":
             print "This bad dude comes at you with an empty vodka bottle, and you"
             print "try to punch him in the nose. He is unmoved."
             print "You try to do a standing armbar. He is unmoved."
@@ -72,7 +83,7 @@ class CentralClub(Scene):
             return 'death'
 
 
-        elif action == "dodge!":
+        elif action == "dodge":
             print "With your years of parry training from 3rd Strike, you bob, weave, and dodge like"
             print "a certain British boxer who has a love for horticulture.  The bottle misses and hits"
             print "Pitbull's bodyguard, because why not. Why not defy conventional logic and have this?"
