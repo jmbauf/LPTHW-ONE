@@ -19,12 +19,11 @@ class Engine(object):
         last_scene = self.scene_map.next_scene('finished')
 
         while current_scene != last_scene:
-            next_scne_name = current_scene.enter()
-            current_scene = self.scene_map.next_scene(Scene)
-
+            next_scene_name = current_scene.enter()
+            current_scene = self.scene_map.next_scene(next_scene_name)
 
             # be sure to print out the last scene pls
-            current_scene.enter(next_scene_name)
+            return current_scene.enter()
 
 class Death(Scene):
 
@@ -176,11 +175,12 @@ class Map(object):
     'MiamiSubs': MiamiSubs(),
     'EscapeCar': EscapeCar(),
     'Death': Death(),
-    'Finished': Finished(),
+    'Finished': Finished()
   }
 
   def __init__(self, start_scene):
       self.start_scene = start_scene
+
 
   def next_scene(self, scene_name):
       val = Map.scenes.get(scene_name)
