@@ -16,22 +16,22 @@ class Engine(object):
 
     def play(self):
         current_scene = self.scene_map.opening_scene()
-        last_scene = self.scene_map.next_scene('finished')
+        last_scene = self.scene_map.next_scene('Finished')
 
-        while current_scene != last_scene:
-            next_scene_name = current_scene.enter()
-            current_scene = self.scene_map.next_scene(next_scene_name)
+        while current_scene != last_scene and current_scene is not None:
+                next_scene_name = current_scene.enter()
+                current_scene = self.scene_map.next_scene(next_scene_name)
 
             # be sure to print out the last scene pls
-            return current_scene.enter()
+        return current_scene.enter()
 
 class Death(Scene):
 
     quips = [
-      "Your friend got arrested and the others are mad."
-      "You are the worst navigator ever. Sad!"
-      "Congratulations, you walking WorldStar highlight reel."
-      "You deserve to be dabbed on."
+      "Your friend got arrested and the others are mad.",
+      "You are the worst navigator ever. Sad!",
+      "Congratulations, you walking WorldStar highlight reel.",
+      "You deserve to be dabbed on.",
       "Gain skill and git gud."
         ]
 
@@ -79,7 +79,7 @@ class CentralClub(Scene):
             print "He gets annoyed, puts the bottle down, and throws you from the balcony"
             print "floor to the first floor. Looking down on you,"
             print "he shakes his head and walks off."
-            return 'death'
+            return 'Death'
 
 
         elif action == "dodge":
@@ -91,7 +91,7 @@ class CentralClub(Scene):
             print "with one hand each, walks you outside, and throws you into a parked car, which happens"
             print "to belong to a mobster who looks like Zangief.  Suffice to say, they riverdance on both of you, hit the dab, and"
             print "walk back into the club."
-            return 'death'
+            return 'Death'
 
         elif action == "reasoning":
             print "You tell the menacing man that your friend went through a very bad breakup and he's"
@@ -107,24 +107,27 @@ class CentralClub(Scene):
 
 class MiamiSubs(Scene):
     def enter(self):
+        print "\n"
         print "You have just arrived at the apex of Miami Beach"
         print "and you know that people are hungry and angry."
         print "Hence, your friend is here, if not being a nuisance."
         print "This place moonlights as an FGC hangout on weekdays"
+        print "\n"
         print "so he of course money-matched and lost a round of 10 games."
         print "Being as cheap as he is, he decided not to pay."
         print "Luckily, you make a wager with the people here that"
         print "if you successfully beat them with a particular damage count"
         print "the bets made by your dumb friend are voided. Guess wrong and"
         print "they get triple.  The amount of damage is three digits."
-        code = "%d%d%d" % (randint(1,9), randint(1,9), randint(1,9))
-        guess = raw_input("[keypad]> ")
+
+        code = "%d" % randint(1,5)
+        guess = raw_input("[keypad #]> ")
         guesses = 0
 
         while guess != code and guesses < 10:
           print "WRONG COUNT FAM"
           guesses += 1
-          guess = raw_input("[keypad]> ")
+          guess = raw_input("[keypad #]> ")
 
         if guess == code:
             print "You are too good for this stuff.  You saved the day!"
@@ -143,9 +146,10 @@ class EscapeCar(Scene):
         print "We just escaped the wildest night in at least the past few weeks"
         print "and now it's time to go home before we bring more havoc and unwanted"
         print "guests to the hotel.  But the car isn't starting.  WHAT THE HECK"
+        print "\n"
         print "like THIS ISNT COOL TOASTY OR ANYTHING FUN YOU JUST FIXED THIS CRAP"
         print "Now that you had your YE moment, it's time to fix it YE style."
-
+        print "\n"
         action = raw_input("> ")
 
         if action == "punch the car":
@@ -160,6 +164,10 @@ class EscapeCar(Scene):
         else:
             print "bruh"
             return 'Escapecar'
+
+class EmptyScene(Scene):
+    def enter(self):
+        return 'CentralClub'
 
 class Finished(Scene):
     def enter(self):
